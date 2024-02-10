@@ -1,78 +1,56 @@
 #!/usr/bin/python3
-"""
-Custom base class for the entire project
-"""
-
+""" Importing necessary modules """
 from uuid import uuid4
 from datetime import datetime
 import models
 
+
 class BaseModel:
-    """Custom base for all the classes in the AirBnb console project
-
-    Arttributes:
-        id(str): handles unique user identity
-        created_at: assigns current datetime
-        updated_at: updates current datetime
-
-    Methods:
-        __str__: prints the class name, id, and creates dictionary
-        representations of the input values
-        save(self): updates instance arttributes with current datetime
-        to_dict(self): returns the dictionary values of the instance obj
-
-    """
-
+    """ SuperClass from which the rest of the classes will inherit """
     def __init__(self, *args, **kwargs):
-        """Public instance artributes initialization
-        after creation
-
-        Args:
-            *args(args): arguments
-            **kwargs(dict): attrubute values
-
-        """
-        DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
-        if not kwargs:
-            self.id = str(uuid4())
-            self.created_at = datetime.utcnow()
-            self.updated_at = datetime.utcnow()
-            models.storage.new(self)
-        else:
+        """ Constructor method """
+        if kwargs is not None and len(kwargs) != 0:
             for key, value in kwargs.items():
-                if key in ("updated_at", "created_at"):
-                    self.__dict__[key] = datetime.strptime(
-                        value, DATE_TIME_FORMAT)
-                elif key[0] == "id":
-                    self.__dict__[key] = str(value)
-                else:
-                    self.__dict__[key] = value
+                if key != '__class__':
+                    if key == 'created_at' or key == 'updated_at':
+                        setattr(self, key, datetime.strptime(
+                            value, '%Y-%m-%dT%H:%M:%S.%f'))
+                    else:
+                        setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
-        """
-        Returns string representation of the class
-        """
-        return "[{}] ({}) {}".format(self.__class__.__name__,
-                                     self.id, self.__dict__)
+        """ Returns the string representation of class name, id and dict """
+        class_name = str("[" + self.__class__.__name__ + "]")
+        instance_id = str("(" + self.id + ")")
+        instance_dict = str(self.__dict__)
+        return (class_name + " " + instance_id + " " + instance_dict)
 
     def save(self):
         """
-        Updates the public instance attribute:
-        'updated_at' - with the current datetime
+        Updates the public instance attribute updated_at
+        with the current datetime
         """
-        self.updated_at = datetime.utcnow()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """
-        Method returns a dictionary containing all 
-        keys/values of __dict__ instance
-        """
-        map_objects = {}
-        for key, value in self.__dict__.items():
-            if key == "created_at" or key == "updated_at":
-                map_objects[key] = value.isoformat()
+        """ Returns a dictionary containing all key/values of instance """
+        dict_objs = {}
+        tmp_var = self.__dict__
+
+        for key, values in tmp_var.items():
+            if key == 'created_at' or key == 'updated_at':
+                dict_objs[key] = values.strftime('%Y-%m-%dT%H:%M:%S.%f')
             else:
-                map_objects[key] = value
-        map_objects["__class__"] = self.__class__.__name__
-        return map_objects
+                if not values:
+                    pass
+                else:
+                    dict_objs[key] = values
+        dict_objs['__class__'] = self.__class__.__name__
+
+        return (dict_objs)

@@ -1,18 +1,16 @@
 #!/usr/bin/python3
-"""
-Defines the User class.
-"""
+""" Imports """
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """Represent a User
+    """
+    Class User
 
-    Attributes:
-        email (str): user email
-        password (str): user password
-        first_name (str): first name
-        last_name (str): last name
+    email(str): mail address
+    password (str): password
+    first_name (str): first name
+    last_name (str): last name
 
     """
     email = ""

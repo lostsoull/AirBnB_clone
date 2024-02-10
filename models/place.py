@@ -1,25 +1,23 @@
 #!/usr/bin/python3
-"""
-Module for Place class
-"""
+""" Imports """
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Inherits from BaseModel class
+    """
+    Class Place
 
-     Attributes:
-        city_id (str): City id
-        user_id (str): User id
-        name (str): name of the place.
-        description (str): description of the place
-        number_rooms (int): number of rooms of the place
-        number_bathrooms (int): number of bathrooms of the place
-        max_guest (int): maximum number of guests of the place
-        price_by_night (int): price by night of the place
-        latitude (float): latitude of the place
-        longitude (float): longitude of the place
-        amenity_ids (list): list of Amenity ids
+    city_id (str): it will be the City.id
+    user_id (str): it will be the User.id
+    name (str): plae name
+    description (str): only description
+    number_rooms (int): rooms quantity
+    number_bathrooms (int): bathrooms quantity
+    max_guest (int): number guest
+    price_by_night (int): price
+    latitude (float): locate number
+    longitude (float): locate number
+    amenity_ids (str): it will be the list of Amenity.id later
 
     """
     city_id = ""
