@@ -3,14 +3,7 @@
 from models.base_model import BaseModel
 
 
-class City(BaseModel):
-    """
-    Class City
-
-    Attributes:
-        state_id (str): it will be the State.id
-        name (str): city name
-
-    """
+class City(BaseMode):
+    """managing city objects"""
     state_id = ""
     name = ""

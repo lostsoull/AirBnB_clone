@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-""" Importing necessary modules """
+"""Import necessary modules """
 from uuid import uuid4
 from datetime import datetime
 import models
 
 
 class BaseModel:
-    """ SuperClass from which the rest of the classes will inherit """
+    """where the classes will inherit """
     def __init__(self, *args, **kwargs):
         """ Constructor method """
         if kwargs is not None and len(kwargs) != 0:
@@ -24,22 +24,20 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        """ Returns the string representation of class name, id and dict """
+        """the string representation of class name, id and dict"""
         class_name = str("[" + self.__class__.__name__ + "]")
         instance_id = str("(" + self.id + ")")
         instance_dict = str(self.__dict__)
         return (class_name + " " + instance_id + " " + instance_dict)
 
     def save(self):
-        """
-        Updates the public instance attribute updated_at
-        with the current datetime
-        """
+        
+        """Updates the public instance"""
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """ Returns a dictionary containing all key/values of instance """
+        """a dictionary containing all values of instance """
         dict_objs = {}
         tmp_var = self.__dict__
 

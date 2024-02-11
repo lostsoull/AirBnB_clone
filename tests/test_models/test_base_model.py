@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-""" Importing necessary modules """
+"""to import necessary modules"""
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
-    """ Test Class. A testcase is created by subclassing unittest.TestCase. """
+    """A testcase created by subclassing unittest;TestCase"""
     def test_correct_instance(self):
-        """ Testing if instance if created correctly """
+        """ Test the class"""
         my_model = BaseModel()
         self.assertIsInstance(my_model, BaseModel)
 
     def test_obj_attributes(self):
-        """ Testing if instance hasattr """
+        """test of instance"""
         my_model = BaseModel()
         self.assertTrue(hasattr(my_model, '__init__'))
         self.assertTrue(hasattr(my_model, '__str__'))
@@ -21,13 +21,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(my_model, 'to_dict'))
 
     def test_type_instance_datetime(self):
-        """ Testing created_at and updated_at instance type datetime """
+        """test created_at and updated_at"""
         my_model = BaseModel()
         self.assertEqual(type(my_model.created_at), datetime)
         self.assertEqual(type(my_model.updated_at), datetime)
 
     def test_instance_attributes(self):
-        """ Testing if attributes are assigned correctly """
+        """test of attributes"""
         my_model = BaseModel()
         my_model.name = "Holberton"
         my_model.my_number = 89
@@ -39,20 +39,20 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(my_model.my_number), int)
 
     def test_unique_id(self):
-        """ Testing if each object id is unique """
+        """test of unique id"""
         my_model = BaseModel()
         my_model2 = BaseModel()
 
         self.assertNotEqual(my_model.id, my_model2.id)
 
     def test_type_unique_id(self):
-        """ Testing if type of id is str """
+        """test of type of id"""
         my_model = BaseModel()
 
         self.assertEqual(type(my_model.id), str)
 
     def test_save_method(self):
-        """ Testing if save method is correct """
+        """test of save method"""
         my_model = BaseModel()
         my_model.name = "Holberton"
         my_model.my_number = 89
@@ -71,14 +71,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(my_model.my_number, model_dict['my_number'])
 
     def test_to_dict_type(self):
-        """ Testing if type of to_dict method is dict """
+        """is dict or not """
         my_model = BaseModel()
         tmp_dict_test = my_model.to_dict()
 
         self.assertEqual(type(tmp_dict_test), dict)
 
     def test_docstring(self):
-        """ Testing Docstring if correct """
+        """Test Docstring"""
 
         self.assertIsNotNone(BaseModel.__doc__)
         self.assertIsNotNone(BaseModel.__init__.__doc__)
@@ -87,7 +87,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
     def test_str_method(self):
-        """ Testing __str__ format """
+        """ Test of str format"""
         my_model = BaseModel()
 
         test_string = "[{}] ({}) {}".format(my_model.__class__.__name__,

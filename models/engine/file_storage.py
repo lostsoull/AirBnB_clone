@@ -17,8 +17,7 @@ classes = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
 
 class FileStorage:
     """
-    Serializes instances to a JSON files and deserializes
-    JSON files to instances
+    Serialization and deserialization
     """
     __file_path = 'file.json'
     __objects = {}
@@ -28,12 +27,12 @@ class FileStorage:
         return (FileStorage.__objects)
 
     def new(self, obj):
-        """ Sets in __objects the obj with key <obj class name>.id """
+        """ Sets in __objects with key <obj class name>.id """
 
         self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
 
     def save(self):
-        """ Serializes __objects to the JSON file """
+        """ Serializes objects"""
         obj_dict = {}
         for key, value in self.__objects.items():
             obj_dict[key] = value.to_dict()
@@ -41,7 +40,7 @@ class FileStorage:
             json.dump(obj_dict, my_file)
 
     def reload(self):
-        """ Deserializes the JSON file if file exists """
+        """ Deserialize if file exists """
         if path.exists(self.__file_path) is True:
             with open(self.__file_path, encoding='utf-8') as my_file:
                 tmp_objs = json.load(my_file)
