@@ -7,11 +7,6 @@ from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """
-    Class Amenity
+    """managing amenity objects"""
 
-    Attributes:
-        name (str): level amiability
-
-    """
     name = ""

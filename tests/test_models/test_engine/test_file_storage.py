@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Importing necessary modules """
+"""to mport necessary modules """
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 import unittest
@@ -10,13 +10,13 @@ from models import storage
 
 
 class TestFileStorage(unittest.TestCase):
-    """ Test class. A testcase is created by subclassing unittest.TestCase. """
+    """A testcase created by subclassing unittest;TestCase"""
     def test_Storage_Instance(self):
-        """ Testing if storage is an instance of FileStorage """
+        """instance of FileStorage or not"""
         self.assertIsInstance(storage, FileStorage)
 
     def test_docstring(self):
-        """ Testing if docstring are correct """
+        """test of docstring"""
         self.assertIsNotNone(FileStorage.__init__.__doc__)
         self.assertIsNotNone(FileStorage.all.__doc__)
         self.assertIsNotNone(FileStorage.new.__doc__)
@@ -24,7 +24,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(FileStorage.reload.__doc__)
 
     def test_all_method(self):
-        """ Testing the all method """
+        """Test methods"""
         my_model = FileStorage()
         objects = my_model.all()
 
@@ -47,7 +47,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(objects[key])
 
     def test_save_method(self):
-        """ Testing if save method is correct """
+        """ Test of save method"""
         my_model = FileStorage()
         my_model.save()
         with open('file.json', encoding='utf-8') as my_file:
@@ -65,7 +65,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(read_lines, read_lines2)
 
     def test_save_method_2(self):
-        """ Testing if the save method works completely """
+        """ Test of the save method"""
         my_model = BaseModel()
         my_model.name = "Holberton"
         my_model.save()

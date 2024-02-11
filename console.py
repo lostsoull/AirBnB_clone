@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Imports"""
+"""Import classes needed"""
 import cmd
 import json
 from models.base_model import BaseModel
@@ -14,15 +14,14 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Class HBNBCommand
-    """
+    """Class HBNBCommand"""
     prompt = "(hbnb) "
     classes = {"BaseModel": BaseModel, "User": User, "State": State,
                "City": City, "Amenity": Amenity, "Place": Place,
                "Review": Review}
 
     def do_create(self, name):
-        """Create a new instance"""
+        """new instance"""
         if name == '':
             print("** class name missing **")
         elif name in HBNBCommand.classes:
@@ -33,8 +32,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_destroy(self, line):
-        """Deletes an instance
-        """
+        """Deletes an instance"""
         if line:
             args = line.split(' ')
             if args[0] in HBNBCommand.classes:
@@ -53,8 +51,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_update(self, line):
-        """Update a instance based on the class name
-        """
+        """Update a instance based on the class"""
         if line:
             args = line.split(' ')
             if len(args) == 1:
@@ -78,8 +75,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_all(self, name):
-        """Prints all instances
-        """
+        """to print instances"""
         list_objs = []
         all_objs = list(storage.all().values())
         if name == "":
@@ -95,8 +91,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
-        """Prints a instance based on the class name
-        """
+        """Prints a instance based on the class"""
         if line:
             args = line.split(' ')
             if args[0] in HBNBCommand.classes:
@@ -115,17 +110,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_quit(self, line):
-        """Quit command to exit the program
-        """
+        """to exit the program"""
         return True
 
     def do_EOF(self, line):
-        """EOF command to exit the program Ctrl+D
-        """
+        """EOF = Ctrl+D"""
         return True
 
     def emptyline(self):
-        """emptyline do not execute before command"""
+        """emptyline don't execute before command"""
         pass
 
 
